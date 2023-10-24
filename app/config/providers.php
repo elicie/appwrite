@@ -172,6 +172,16 @@ return [
         'beta' => false,
         'mock' => false,
     ],
+    'kakao' => [
+        'name' => 'Kakao',
+        'developers' => 'https://developer.kakao.com/',
+        'icon' => 'icon-kakao',
+        'enabled' => true,
+        'sandbox' => false,
+        'form' => false,
+        'beta' => false,
+        'mock' => false,
+    ],
     'linkedin' => [
         'name' => 'LinkedIn',
         'developers' => 'https://developer.linkedin.com/',
