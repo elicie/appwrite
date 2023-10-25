@@ -77,6 +77,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Swoole\Database\PDOProxy;
 use Utopia\Queue;
 use Utopia\Queue\Connection;
+use Utopia\Storage\Device\MinIO;
 use Utopia\Storage\Storage;
 use Utopia\VCS\Adapter\Git\GitHub as VcsGitHub;
 use Utopia\Validator\Range;
@@ -1291,6 +1292,14 @@ function getDevice($root): Device
                 $wasabiBucket = App::getEnv('_APP_STORAGE_WASABI_BUCKET', '');
                 $wasabiAcl = 'private';
                 return new Wasabi($root, $wasabiAccessKey, $wasabiSecretKey, $wasabiBucket, $wasabiRegion, $wasabiAcl);
+            case Storage::DEVICE_MINIO:
+                $minioAccessKey = App::getEnv('_APP_STORAGE_MINIO_ACCESS_KEY', '');
+                $minioSecretKey = App::getEnv('_APP_STORAGE_MINIO_SECRET', '');
+                $minioRegion = App::getEnv('_APP_STORAGE_MINIO_REGION', '');
+                $minioBucket = App::getEnv('_APP_STORAGE_MINIO_BUCKET', '');
+                $minioHost = App::getEnv('_APP_STORAGE_MINIO_HOST', '');
+                $minioAcl = 'private';
+                return new MinIO($root, $minioAccessKey, $minioSecretKey, $minioHost, $minioBucket, $minioRegion, $minioAcl);
         }
     }
 }

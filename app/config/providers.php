@@ -178,8 +178,8 @@ return [
         'icon' => 'icon-kakao',
         'enabled' => true,
         'sandbox' => false,
-        'form' => false,
-        'beta' => false,
+        'form' => 'kakao.phtml',
+        'beta' => true,
         'mock' => false,
     ],
     'linkedin' => [
