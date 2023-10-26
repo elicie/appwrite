@@ -62,6 +62,7 @@ use Utopia\Storage\Device\Linode;
 use Utopia\Storage\Device\Local;
 use Utopia\Storage\Device\S3;
 use Utopia\Storage\Device\Wasabi;
+use Utopia\Storage\Device\MinIO;
 use Utopia\Cache\Adapter\Sharding;
 use Utopia\Database\Adapter\MariaDB;
 use Utopia\Database\Adapter\MySQL;
@@ -77,7 +78,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Swoole\Database\PDOProxy;
 use Utopia\Queue;
 use Utopia\Queue\Connection;
-use Utopia\Storage\Device\MinIO;
 use Utopia\Storage\Storage;
 use Utopia\VCS\Adapter\Git\GitHub as VcsGitHub;
 use Utopia\Validator\Range;
@@ -1233,6 +1233,7 @@ function getDevice($root): Device
             $accessSecret = $dsn->getPassword() ?? '';
             $bucket = $dsn->getPath() ?? '';
             $region = $dsn->getParam('region');
+            
         } catch (\Exception $e) {
             Console::warning($e->getMessage() . 'Invalid DSN. Defaulting to Local device.');
         }
@@ -1298,8 +1299,10 @@ function getDevice($root): Device
                 $minioRegion = App::getEnv('_APP_STORAGE_MINIO_REGION', '');
                 $minioBucket = App::getEnv('_APP_STORAGE_MINIO_BUCKET', '');
                 $minioHost = App::getEnv('_APP_STORAGE_MINIO_HOST', '');
+                $miniovHost = App::getEnv('_APP_STORAGE_MINIO_VHOST', '');
                 $minioAcl = 'private';
-                return new MinIO($root, $minioAccessKey, $minioSecretKey, $minioHost, $minioBucket, $minioRegion, $minioAcl);
+                
+                return new MinIO($minioHost, $root, $minioAccessKey, $minioSecretKey, $minioBucket, $miniovHost, $minioRegion);
         }
     }
 }

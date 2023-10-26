@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac17746bf9e453680b8c0c8437c7adb6",
+    "content-hash": "2d22f58db26b3c96c64f54cb73fcf745",
     "packages": [
         {
             "name": "adhocore/jwt",
@@ -2068,6 +2068,63 @@
             "time": "2022-10-26T10:06:20+00:00"
         },
         {
+            "name": "utopia-php/elicie-storage",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elicie/storage.git",
+                "reference": "a02f5eab3014e07c383990cf2e24f355ca86f5f2"
+            },
+            "require": {
+                "ext-brotli": "*",
+                "ext-fileinfo": "*",
+                "ext-lz4": "*",
+                "ext-snappy": "*",
+                "ext-xz": "*",
+                "ext-zlib": "*",
+                "ext-zstd": "*",
+                "php": ">=8.0",
+                "utopia-php/framework": "0.*.*",
+                "utopia-php/system": "0.*.*"
+            },
+            "require-dev": {
+                "laravel/pint": "1.2.*",
+                "phpunit/phpunit": "^9.3",
+                "vimeo/psalm": "4.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Utopia\\Storage\\": "src/Storage"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Utopia\\Tests\\Storage\\": "tests/Storage"
+                }
+            },
+            "scripts": {
+                "lint": [
+                    "./vendor/bin/pint --test"
+                ],
+                "format": [
+                    "./vendor/bin/pint"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A simple Storage library to manage application storage",
+            "keywords": [
+                "framework",
+                "php",
+                "storage",
+                "upf",
+                "utopia"
+            ],
+            "time": "2023-10-26T02:09:08+00:00"
+        },
+        {
             "name": "utopia-php/framework",
             "version": "0.31.0",
             "source": {
@@ -2739,16 +2796,6 @@
                 "source": "https://github.com/utopia-php/registry/tree/0.5.0"
             },
             "time": "2021-03-10T10:45:22+00:00"
-        },
-        {
-            "name": "utopia-php/storage",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/elicie/storage",
-                "reference": "origin/main"
-            },
-            "type": "library"
         },
         {
             "name": "utopia-php/swoole",
